@@ -79,6 +79,7 @@ class QPath {
         ctx.strokeStyle = lineStyle.color
         ctx.beginPath()
         ctx.moveTo(points[0].x, points[0].y)
+        console.log(points[0].x, points[0].y);
         for (let i = 1; i < n; i++) {
             ctx.lineTo(points[i].x, points[i].y)
         }

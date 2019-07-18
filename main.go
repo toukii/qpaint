@@ -20,6 +20,8 @@ func main() {
 		log.Fatal(err)
 	}
 
+	_ = common.FS
+
 	// ui.Bind("getCookie", common.GetCookie)
 
 	defer ui.Close()
@@ -29,8 +31,8 @@ func main() {
 		log.Fatal(err)
 	}
 	defer ln.Close()
-	// go http.Serve(ln, http.FileServer(http.Dir("./tpl")))
-	go http.Serve(ln, http.FileServer(common.FS))
+	go http.Serve(ln, http.FileServer(http.Dir("./www")))
+	// go http.Serve(ln, http.FileServer(common.FS))
 	ui.Load(fmt.Sprintf("http://%s", ln.Addr()))
 
 	sigc := make(chan os.Signal)

@@ -4,10 +4,50 @@
 </head>
 <body>
 <style>
-#drawing{border:1px solid lightgray}
+#drawing{
+	border:1px solid lightgray;
+	position: fixed;
+	top: 100;
+	left: 100;
+}
+.rawImg{
+	position: fixed;
+	top: 120;
+	left: 150;
+}
 </style>
 <div id="menu"></div><br>
+<img class="rawImg" width="418" height="418" src="tgrpc.png">
 <canvas id="drawing" width="900" height="500">你的浏览器不支持Canvas！</canvas>
+<script>
+	/*
+	绘制图片
+		图片预加载，获取图片文件
+		onload中调用
+		drawImage(img,x,y,w,h);绘制图片(图片,坐标x,坐标y,宽度,高度)
+	*/
+	// var drawing = document.getElementById("drawing");	
+	// var cxt = drawing.getContext("2d");
+	
+	var imgs = new Image();
+	imgs.src = "tgrpc.png";
+	console.log(imgs.width,imgs.height);
+	// //方法一：存在部分不兼容
+	// imgs.onload = drawImg;//图片加载完成再执行
+	// function drawImg(){
+	// 	// cxt.drawImage(imgs,0,0,drawing.width,drawing.height);
+	// 	cxt.drawImage(imgs,0,0,imgs.width,imgs.height);
+	// }
+
+	// //方法二:
+	// // imgs.onload = createPat;//图片加载完成再执行
+	// function createPat(){
+	// 	var bg = cxt.createPattern(imgs,"no-repeat");
+	// 	cxt.fillStyle = bg;
+	// 	cxt.fillRect(0,0,drawing.width,drawing.height);
+	// }
+
+</script>
 <script src="dom.js"></script>
 <script src="view.js"></script>
 <script src="creator/path.js?v=7"></script>
