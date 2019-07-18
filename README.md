@@ -1,23 +1,5 @@
-# QPaint (by Qiniu.com)
+# QPaint by [github.com/zserge/lorca](https://github.com/zserge/lorca)
 
-## QPaint DOM
+run qpaint by lorca.
 
-* TODO
-
-## QPaint Web
-
-Session-based Model:
-
-* https://github.com/qiniu/qpaint/blob/master/paintweb/www/dom.js
-
-ViewModel:
-
-* https://github.com/qiniu/qpaint/blob/master/paintweb/www/view.js
-* https://github.com/qiniu/qpaint/blob/master/paintweb/www/index.htm
-
-Controllers:
-
-* Menu, PropSelectors, MousePosTracker: https://github.com/qiniu/qpaint/blob/master/paintweb/www/accel/menu.js
-* Create Path: https://github.com/qiniu/qpaint/blob/master/paintweb/www/creator/path.js
-* Create FreePath: https://github.com/qiniu/qpaint/blob/master/paintweb/www/creator/freepath.js
-* Create Line, Rect, Ellipse, Circle: https://github.com/qiniu/qpaint/blob/master/paintweb/www/creator/rect.js
+# Fork from [github.com/qiniu/qpaint](https://github.com/qiniu/qpaint)
