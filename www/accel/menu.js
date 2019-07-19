@@ -11,6 +11,7 @@ function installControllers() {
 
     for (let gkey in qview.controllers) {
         let key = gkey
+        console.log(key);
         let elem = document.getElementById(key)
         elem.style.visibility = "visible"
         elem.onclick = function() {
@@ -84,3 +85,4 @@ function installMousePos() {
 installControllers()
 installPropSelectors()
 installMousePos()
+qview.invokeController("PathCreator")

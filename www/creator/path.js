@@ -10,7 +10,23 @@ class QPathCreator {
         qview.ondblclick = function(event) { ctrl.ondblclick(event) }
         qview.onkeydown = function(event) { ctrl.onkeydown(event) }
     }
-    stop() {
+    async stop () {
+        var points = this.getPoints()
+        var bezierStr =  await window.bezierPath(points);
+        console.log(bezierStr);
+        var bizierPath = document.getElementById("bezier-path")
+        bizierPath.setAttribute("d", bezierStr);
+        console.log(bizierPath);
+
+        var svg_xml = (new XMLSerializer()).serializeToString(svg);
+        var img = new Image();
+        img.src = "data:image/svg+xml;base64," + window.btoa(svg_xml);
+        img.onload = function () {
+            //drawImage 可以用HTMLImageElement，HTMLCanvasElement或者HTMLVideoElement作为参数
+            let ctx = document.getElementById("drawing").getContext('2d');
+            ctx.drawImage(img, 0, 0);
+        };
+
         qview.onmousedown = null
         qview.onmousemove = null
         qview.ondblclick = null
@@ -21,6 +37,13 @@ class QPathCreator {
         this.points = []
         this.started = false
         invalidate(null)
+    }
+    getPoints() {
+        let points = [{x: this.fromPos.x, y: this.fromPos.y}]
+        for (let i in this.points) {
+            points.push(this.points[i])
+        }
+        return points;
     }
     buildShape() {
         let points = [{x: this.fromPos.x, y: this.fromPos.y}]
