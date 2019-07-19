@@ -10,7 +10,15 @@ class QPathCreator {
         qview.ondblclick = function(event) { ctrl.ondblclick(event) }
         qview.onkeydown = function(event) { ctrl.onkeydown(event) }
     }
-    async stop () {
+    stop () {
+        this.bezier()
+        qview.onmousedown = null
+        qview.onmousemove = null
+        qview.ondblclick = null
+        qview.onkeydown = null
+    }
+
+    async bezier() {
         var points = this.getPoints()
         var bezierStr =  await window.bezierPath(points);
         console.log(bezierStr);
@@ -26,11 +34,6 @@ class QPathCreator {
             let ctx = document.getElementById("drawing").getContext('2d');
             ctx.drawImage(img, 0, 0);
         };
-
-        qview.onmousedown = null
-        qview.onmousemove = null
-        qview.ondblclick = null
-        qview.onkeydown = null
     }
 
     reset() {
@@ -83,6 +86,8 @@ class QPathCreator {
             break
         case 27: // keyEsc
             this.reset()
+        case 81:
+            this.bezier()
         }
     }
 
