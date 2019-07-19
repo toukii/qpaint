@@ -10,7 +10,7 @@ class QPathCreator {
         qview.ondblclick = function(event) { ctrl.ondblclick(event) }
         qview.onkeydown = function(event) { ctrl.onkeydown(event) }
     }
-    stop () {
+    stop() {
         this.bezier()
         qview.onmousedown = null
         qview.onmousemove = null
@@ -33,6 +33,7 @@ class QPathCreator {
             //drawImage 可以用HTMLImageElement，HTMLCanvasElement或者HTMLVideoElement作为参数
             let ctx = document.getElementById("drawing").getContext('2d');
             ctx.drawImage(img, 0, 0);
+            ctx.save()
         };
     }
 
@@ -40,6 +41,7 @@ class QPathCreator {
         this.points = []
         this.started = false
         invalidate(null)
+        qview.fireControllerReset()
     }
     getPoints() {
         let points = [{x: this.fromPos.x, y: this.fromPos.y}]
@@ -53,7 +55,7 @@ class QPathCreator {
         for (let i in this.points) {
             points.push(this.points[i])
         }
-        return new QPath(points, this.close, qview.lineStyle)
+        return new QPath(points, this.close, qview.style.clone())
     }
 
     onmousedown(event) {
@@ -86,14 +88,14 @@ class QPathCreator {
             break
         case 27: // keyEsc
             this.reset()
-        case 81:
+        case 81: // Q
             this.bezier()
         }
     }
 
     onpaint(ctx) {
         if (this.started) {
-            let props = qview.properties
+            let props = qview.style
             ctx.lineWidth = props.lineWidth
             ctx.strokeStyle = props.lineColor
             ctx.beginPath()

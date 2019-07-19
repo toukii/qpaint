@@ -20,13 +20,14 @@ class QFreePathCreator {
         this.points = []
         this.started = false
         invalidate(null)
+        qview.fireControllerReset()
     }
     buildShape() {
         let points = [{x: this.fromPos.x, y: this.fromPos.y}]
         for (let i in this.points) {
             points.push(this.points[i])
         }
-        return new QPath(points, this.close, qview.lineStyle)
+        return new QPath(points, this.close, qview.style.clone())
     }
 
     onmousedown(event) {
@@ -53,7 +54,7 @@ class QFreePathCreator {
 
     onpaint(ctx) {
         if (this.started) {
-            let props = qview.properties
+            let props = qview.style
             ctx.lineWidth = props.lineWidth
             ctx.strokeStyle = props.lineColor
             ctx.beginPath()
