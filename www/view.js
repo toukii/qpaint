@@ -4,6 +4,7 @@ class QPaintView {
         this.controllers = {}
         this._currentKey = ""
         this._current = null
+        this.currentPos = {}
         this._selection = null
         this.onmousedown = null
         this.onmousemove = null
@@ -66,10 +67,11 @@ class QPaintView {
     }
 
     getMousePos(event) {
-        return {
+        this.currentPos = {
             x: event.offsetX,
             y: event.offsetY
         }
+        return this.currentPos
     }
  
     onpaint(ctx) {

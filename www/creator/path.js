@@ -69,9 +69,15 @@ class QPathCreator {
             break
         case 27: // keyEsc
             this.reset()
-        case 81: // Q
-            qview.bezier(this.getPoints())
+        case 65: // A
+            console.log(qview.currentPos);
+            this.points.push(qview.currentPos)
+            break
+        case 85: // U
+            this.points.pop()
+            invalidate(null)
         }
+        qview.bezier(this.getPoints())
     }
 
     onpaint(ctx) {
