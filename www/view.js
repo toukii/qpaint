@@ -119,22 +119,27 @@ class QPaintView {
         this._currentKey = name
     }
 
+    async shapes() {
+        var shapesStr = await window.shapes(qview.doc.getShapes());
+        console.log(shapesStr);
+        if (shapesStr!="") {
+            svg.innerHTML = shapesStr;
+        }
+    }
+
     async bezier(points) {
         var bezierStr =  await window.bezierPath(points);
-        console.log(bezierStr);
-        var bizierPath = document.getElementById("bezier-path")
-        bizierPath.setAttribute("d", bezierStr);
-        console.log(bizierPath);
+        svg.innerHTML = bezierStr;
 
-        var svg_xml = (new XMLSerializer()).serializeToString(svg);
-        var img = new Image();
-        img.src = "data:image/svg+xml;base64," + window.btoa(svg_xml);
-        img.onload = function () {
-            //drawImage 可以用HTMLImageElement，HTMLCanvasElement或者HTMLVideoElement作为参数
-            let ctx = document.getElementById("drawing").getContext('2d');
-            ctx.drawImage(img, 0, 0);
-            ctx.save()
-        };
+        // var svg_xml = (new XMLSerializer()).serializeToString(svg);
+        // var img = new Image();
+        // img.src = "data:image/svg+xml;base64," + window.btoa(svg_xml);
+        // img.onload = function () {
+        //     //drawImage 可以用HTMLImageElement，HTMLCanvasElement或者HTMLVideoElement作为参数
+        //     let ctx = document.getElementById("drawing").getContext('2d');
+        //     ctx.drawImage(img, 0, 0);
+        //     ctx.save()
+        // };
     }
 }
 

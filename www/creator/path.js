@@ -59,6 +59,7 @@ class QPathCreator {
         if (this.started) {
             qview.doc.addShape(this.buildShape())
             this.reset()
+            qview.shapes()
         }
     }
     onkeydown(event) {
@@ -70,7 +71,7 @@ class QPathCreator {
         case 27: // keyEsc
             this.reset()
         case 65: // A
-            console.log(qview.currentPos);
+            // console.log(qview.currentPos);
             this.points.push(qview.currentPos)
             break
         case 85: // U

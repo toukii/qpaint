@@ -285,6 +285,9 @@ class QPaintDoc {
     deleteShape(shape) {
         deleteItem(this.shapes, shape)
     }
+    getShapes() {
+        return this.shapes
+    }
     hitTest(pt) {
         let shapes = this.shapes
         let n = shapes.length
