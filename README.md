@@ -6,7 +6,9 @@ run qpaint by lorca.
 
 ### quickKey
 ```
-Q : paint bezier path use current QPath's points, include fromPos.
+U : paint bezier path use current QPath's points, include fromPos.
+A : add a point in current shape
+path dbl-click : render the path shapes.
 ```
 
 ## Fork from [qiniu/qpaint](https://github.com/qiniu/qpaint)
